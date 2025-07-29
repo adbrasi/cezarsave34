@@ -31,6 +31,9 @@ class CustomImageSaver:
                 "source": ("STRING", {"default": "", "multiline": False}),
                 "title": ("STRING", {"default": "", "multiline": False}),
                 "tagsfor34": ("STRING", {"default": "", "multiline": True}),
+                "pixiv_tag": ("STRING", {"default": "", "multiline": False}),
+                "pixiv_title": ("STRING", {"default": "", "multiline": True}),
+                "pixiv_description": ("STRING", {"default": "", "multiline": True}),
                 "output_path": ("STRING", {"default": "", "multiline": False}),
                 "prefix": ("STRING", {"default": "image"}),
                 "format": (available_formats,),
@@ -105,7 +108,7 @@ class CustomImageSaver:
 
         return f"{prefix}_{counter:0{number_padding}d}.{ext}"
 
-    def save_image_with_metadata(self, image, source, title, tagsfor34, output_path, prefix, format, quality, number_padding, overwrite_existing, character=""):
+    def save_image_with_metadata(self, image, source, title, tagsfor34, pixiv_tag, pixiv_title, pixiv_description, output_path, prefix, format, quality, number_padding, overwrite_existing, character=""):
         if not output_path:
             raise ValueError("O caminho de saída (output_path) deve ser fornecido")
         
@@ -116,6 +119,9 @@ class CustomImageSaver:
             "Source": source,
             "title": title,
             "tagsfor34": processed_tags,
+            "pixiv_tag": pixiv_tag,
+            "pixiv_title": pixiv_title,
+            "pixiv_description": pixiv_description,
             "Generator": f"ARRAKIS Project - HanmaBuu v{self.version}"
         }
 
